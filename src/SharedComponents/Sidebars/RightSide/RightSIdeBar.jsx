@@ -5,7 +5,7 @@ import qZone3 from "../../../assets/playground.png"
 
 const RightSIdeBar = () => {
     return (
-        <div className="lg:w-1/4">
+        <div className="">
             <div className="mb-9">
                 <h1 className="font-bold mb-5">Login With</h1>
                 <button className="btn w-full btn-outline btn-primary mb-3">

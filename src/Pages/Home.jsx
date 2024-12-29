@@ -5,8 +5,17 @@ import Navbar from '../SharedComponents/Navbar/Navbar';
 import LeftSideBar from '../SharedComponents/Sidebars/LeftSide/LeftSideBar';
 import RightSIdeBar from '../SharedComponents/Sidebars/RightSide/RightSIdeBar';
 import Marquee from "react-fast-marquee";
+import { useEffect, useState } from 'react';
+import NewsCard from '../Components/NewsCard';
 const Home = () => {
+    const [news, setNews] = useState([])
+    useEffect(() => {
+            fetch('news.json')
+            .then(res => res.json())
+            .then(data => setNews(data))
+        } ,[])
     return (
+        
         <div>
 
             <div className='flex items-center px-3 mt-8  rounded-xl gap-4 h-[70px] bg-[#F3F3F3]'>
@@ -19,8 +28,14 @@ const Home = () => {
             
             <div className='flex lg:flex-row mt-8 flex-col gap-6'>
                 <LeftSideBar></LeftSideBar>
-                <h1 className='text-center font-poppins border-2 lg:w-2/4'>HomePage</h1>
-                <RightSIdeBar></RightSIdeBar>
+                <div className='w-2/4'>
+                    {
+                        news.map((singleNews, idx) => <NewsCard key={idx} singleNews={singleNews}></NewsCard>)
+                    }
+                </div>
+                <div className='w-1/4'>
+                    <RightSIdeBar></RightSIdeBar>
+                </div>
             </div>
         </div>
     );
